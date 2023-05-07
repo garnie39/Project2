@@ -54,9 +54,9 @@ NFT + IG = +A SHOWCASE
    - comment input
    - function to store all like n comment input .py
    - function to display likes and comments .py & .html
-   - CREATE TABLE posts
-     - id SERRIAL PRIMARY KEY
-     - user_id TEXT
-     - comment TEXT
-     - is_like BOOLEAN
-     - is_bid BOOLEAN
+     / CREATE TABLE posts
+     / id SERRIAL PRIMARY KEY
+     / user_id TEXT
+     / comment TEXT
+     / is_like BOOLEAN
+     / is_bid BOOLEAN

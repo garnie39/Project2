@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, redirect, session
 # import os
-import psycopg2
-from models import user
+from models import user, showcase
 # from dotenv import load_dotenv
 # load_dotenv()
 
@@ -51,6 +50,33 @@ def logout():
     session["user_id"] = None
     session["user_username"] = None
     return redirect("/feed")
+# READ
+@app.route("/feed")
+def feed():
+    showcase_obj = showcase.Showcase()
+    dict = showcase_obj.get_all_showcase()
+    return render_template("feed.html", feed_item = dict)
+# CREATE
+@app.route("/form/newpost")
+def new_post():
+    return render_template("newpost.html")
+
+@app.route("/api/newpost", methods=["POST"])
+def add_new_post():
+    form = request.form
+
+    new_post = showcase.Showcase(
+    user_id = session["user_id"],
+    pic_url = form.get("pic_url"),
+    pic_name = form.get("pic_name"),
+    is_bid = form.get("bid")
+    )
+
+    new_post.new_post()
+
+    return redirect("/feed")
+
+
 
 if __name__ == '__main__':
     app.run(debug=True) #,port=os.getenv("PORT", default=5000)

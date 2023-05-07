@@ -1,0 +1,31 @@
+{% extends 'base.html'%} {%block head%}
+<script src="../static/newpost.js" defer></script>
+{%block title%}New Post{%endblock%} {%block body%} Sign up with A+ SHOWCASE
+<form class="newpost" action="/newpost" method="post">
+  <label for="pic_url">Picture:</label>
+  <input type="text" name="pic_url" />
+  <br />
+  <label for="pic_name">Caption:</label>
+  <input type="text" name="pic_name" />
+  <br />
+  <p>Is this picture for bid?</p>
+  <input
+    type="checkbox"
+    id="bidYes"
+    name="bid"
+    onclick="onlyOne(this)"
+    value="True"
+  />
+  <label for="bidYes">Yes</label>
+  <input
+    type="checkbox"
+    id="bidNo"
+    name="bid"
+    onclick="onlyOne(this)"
+    value="False"
+  />
+  <label for="bidNo">No</label>
+  <br />
+  <input type="submit" />
+</form>
+{%endblock%}

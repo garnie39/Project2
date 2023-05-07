@@ -8,7 +8,7 @@ class User:
         self.password = password
 
     def get_user_if_valid(self):
-        results = common.sql_read(f"SELECT * FROM users WHERE email=%s", [self.email])
+        results = common.sql_read(f"SELECT * FROM users WHERE email=%s;", [self.email])
         if len(results):
             user = results[0]
             user_formatted = {"id": user[0], "username": user[1], "email": user[2], "hashed_password": user[3]}
@@ -19,4 +19,4 @@ class User:
     
     def add_user(self):
         hashed_password = bcrypt.hashpw(self.password.encode(), bcrypt.gensalt().decode())
-        common.sql_write("INSERT INTO users (username, email, hashed_password, coins) VALUES(%s,%s,%s,%s)", [self.username, self.email, hashed_password, 20])
+        common.sql_write("INSERT INTO users (username, email, hashed_password, coins) VALUES(%s,%s,%s,%s);", [self.username, self.email, hashed_password, 20])
