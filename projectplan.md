@@ -3,10 +3,10 @@ NFT + IG = +A SHOWCASE
 1. sign up - log in
 
    - set sign up & log in page .html
-   - function for sign up .py
-   - function for logg in .py
-     - rmb to hashed password
-   - create table users
+     / function for sign up .py
+     / function for logg in .py
+     / rmb to hashed password
+     / create table users
      - id SERRIAL PRIMARY KEY
      - username TEXT
      - user email TEXT NOT NULL
