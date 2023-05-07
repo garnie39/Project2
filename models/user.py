@@ -11,7 +11,7 @@ class User:
         results = common.sql_read(f"SELECT * FROM users WHERE email=%s", [self.email])
         if len(results):
             user = results[0]
-            user_formatted = {"id": user[0], "username": user[1], "email": user[2], "hashed_password": user[4]}
+            user_formatted = {"id": user[0], "username": user[1], "email": user[2], "hashed_password": user[3]}
             if bcrypt.checkpw(self.password.encode(), user_formatted["hashed_password"].encode()):
                 return user_formatted
             return None
