@@ -12,7 +12,7 @@ NFT + IG = +A SHOWCASE
      - user email TEXT NOT NULL
      - user password TEXT NOT NULL
      - user_credit_coins INT
-     - user_prrofile_pic TEXT
+     - user_profile_pic TEXT
      - hashed_password
 
 2. main html page
