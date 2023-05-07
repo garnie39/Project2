@@ -1,7 +1,7 @@
 import psycopg2
 
 def sql_read(query, parameters=[]):
-    connection = psycopg2.connect(dbname="project2")
+    connection = psycopg2.connect(dbname="project2", user='postgres', port=5433, password='Puppygarn3939!')
     cursor = connection.cursor()
     cursor.execute(query, parameters)
     results = cursor.fetchall()
@@ -9,7 +9,7 @@ def sql_read(query, parameters=[]):
     return results
 
 def sql_write(query, parameters=[]):
-    connection = psycopg2.connect(dbname="project2")
+    connection = psycopg2.connect(dbname="project2", user='postgres', port=5433, password='Puppygarn3939!')
     cursor = connection.cursor()
     cursor.execute(query,parameters)
     connection.commit()

@@ -4,7 +4,27 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='a.css')}}" />
+    {%block head%}{%endblock}
+    <title>{%block title%}{%endblock%}</title>
   </head>
-  <body></body>
+  <body>
+    <header>
+      <nav>
+        <a href="/feed">A+ Feed</a>
+        <a href="/bid">A+ Bid</a>
+        <a href="/addcoins">Add Coins</a>
+        <a href="/About">About</a>
+        {# | #} {% if session['username'] %} Hello {{ session['username']}}!
+        <a href="/profile">Profile</a>
+        <a href="/logout">Logout</a>
+        {% else %}
+        <a href="/login">Login</a>
+        {# Or #}
+        <a href="/signup">Signup</a>
+        {% endif %}
+      </nav>
+    </header>
+    <section>{%block body%} {%endblock%}</section>
+  </body>
 </html>
