@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, session
 # import os
+import psycopg2
 from models import user, showcase
 # from dotenv import load_dotenv
 # load_dotenv()
