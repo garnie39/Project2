@@ -7,15 +7,15 @@ from models import user, showcase
 
 app = Flask(__name__)
 
-# @app.route('/')
-# def index():
-#     # connection = psycopg2.connect(host=os.getenv("PGHOST"), user=os.getenv("PGUSER"), password=os.getenv("PGPASSWORD"), port=os.getenv("PGPORT"), dbname=os.getenv("PGDATABASE"))
-#     connection = psycopg2.connect(dbname='project2', user='postgres', port=5433, password='Puppygarn3939!')
-#     cursor = connection.cursor()
-#     cursor.execute("SELECT * FROM users;")
-#     results = cursor.fetchall()
-#     connection.close()
-#     return f"{results[0]}"
+@app.route('/')
+def index():
+    # connection = psycopg2.connect(host=os.getenv("PGHOST"), user=os.getenv("PGUSER"), password=os.getenv("PGPASSWORD"), port=os.getenv("PGPORT"), dbname=os.getenv("PGDATABASE"))
+    connection = psycopg2.connect(host='dpg-ch8fghmsi8uhth77afeg-a.oregon-postgres.render.com', user='project2_qc0g_user', port=5432, password='14IHid8sJP55UojaIAJ8cE8k47YNbiMA', dbname='project2')
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM users;")
+    results = cursor.fetchall()
+    connection.close()
+    return f"{results[0]}"
 
 
 @app.route("/signup")
