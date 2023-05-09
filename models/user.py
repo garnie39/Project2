@@ -18,5 +18,5 @@ class User:
         return None
     
     def add_user(self):
-        hashed_password = bcrypt.hashpw(self.password.encode(), bcrypt.gensalt().decode())
+        hashed_password = bcrypt.hashpw(self.password.encode(), bcrypt.gensalt()).decode()
         common.sql_write("INSERT INTO users (username, email, hashed_password, coins) VALUES(%s,%s,%s,%s);", [self.username, self.email, hashed_password, 20])
