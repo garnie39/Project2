@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, session
-# import os
+import os
 import psycopg2
 from models import user, showcase
 # from dotenv import load_dotenv
@@ -79,4 +79,4 @@ def add_new_post():
 
 
 if __name__ == '__main__':
-    app.run(debug=True) #,port=os.getenv("PORT", default=5000)
+    app.run(debug=True ,port=os.getenv("PORT", default=5000))
