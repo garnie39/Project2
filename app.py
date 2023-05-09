@@ -2,15 +2,11 @@ from flask import Flask, render_template, request, redirect, session
 import os
 import psycopg2
 from models import user, showcase
-# from dotenv import load_dotenv
-# load_dotenv()
-
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    # connection = psycopg2.connect(dbname='project2', user = 'postgres', port=5433, password = 'Puppygarn3939!')
     connection = psycopg2.connect(host=os.getenv("PGHOST"), user=os.getenv("PGUSER"), password=os.getenv("PGPASSWORD"), port=os.getenv("PGPORT"), dbname=os.getenv("PGDATABASE"))
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM users;")
