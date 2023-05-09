@@ -1,7 +1,8 @@
 import psycopg2
+import os
 
 def sql_read(query, parameters=[]):
-    connection = psycopg2.connect(host='dpg-ch8fghmsi8uhth77afeg-a.oregon-postgres.render.com', user='project2_qc0g_user', port=5432, password='14IHid8sJP55UojaIAJ8cE8k47YNbiMA', dbname='project2')
+    connection = psycopg2.connect(host=os.getenv("PGHOST"), user=os.getenv("PGUSER"), password=os.getenv("PGPASSWORD"), port=os.getenv("PGPORT"), dbname=os.getenv("PGDATABASE"))
     cursor = connection.cursor()
     cursor.execute(query, parameters)
     results = cursor.fetchall()
@@ -9,7 +10,7 @@ def sql_read(query, parameters=[]):
     return results
 
 def sql_write(query, parameters=[]):
-    connection = psycopg2.connect(host='dpg-ch8fghmsi8uhth77afeg-a.oregon-postgres.render.com', user='project2_qc0g_user', port=5432, password='14IHid8sJP55UojaIAJ8cE8k47YNbiMA', dbname='project2')
+    connection = psycopg2.connect(host=os.getenv("PGHOST"), user=os.getenv("PGUSER"), password=os.getenv("PGPASSWORD"), port=os.getenv("PGPORT"), dbname=os.getenv("PGDATABASE"))
     cursor = connection.cursor()
     cursor.execute(query,parameters)
     connection.commit()
