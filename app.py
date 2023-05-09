@@ -18,26 +18,30 @@ def index():
 @app.route("/signup")
 def signup():
     return render_template("signup.html")
+
 # CREATE
 @app.route("/signup", methods=["POST"])
 def signup_action():
-    user.add_user(request.form.get('username'),request.form.get('email'),request.form.get('password'))
+    new_user = user.User(request.form.get('username'),request.form.get('email'),request.form.get('password'))
+    new_user.add_user()
     return redirect("/login")
 
 @app.route("/login")
 def login_form():
     return render_template("login.html")
+
 # READ
 @app.route("/login", methods=["POST"])
 def login_action():
     email = request.form.get('email')
     password = request.form.get('password')
 
-    curr_user = user.get_user_if_valid(email, password)
+    curr_user = user.User(email=email, password=password)
+    curr_user = curr_user.get_user_if_valid()
 
     if curr_user:
         session["user_id"] = curr_user["id"]
-        session["user_username"] = curr_user["username"]
+        session["user_name"] = curr_user["username"]
         return redirect("/feed")
     else:
         return render_template("login.html", message = "Invalid account! Try again or If you haven't register, please sign up!")
@@ -47,12 +51,14 @@ def logout():
     session["user_id"] = None
     session["user_username"] = None
     return redirect("/feed")
+
 # READ
 @app.route("/feed")
 def feed():
     showcase_obj = showcase.Showcase()
     dict = showcase_obj.get_all_showcase()
     return render_template("feed.html", feed_item = dict)
+
 # CREATE
 @app.route("/form/newpost")
 def new_post():
