@@ -21,8 +21,15 @@ class Showcase:
         all_posts = common.sql_read("SELECT * FROM showcase;")
         return [self.convert_to_dict(post) for post in all_posts]
     
+    def get_post(self):
+        post = common.sql_read("SELECT * FROM showcase WHERE id=%s;", [self.id])[0]
+        return self.convert_to_dict(post)
+
     def new_post(self):
         common.sql_write("INSERT INTO showcase (user_id, pic_url, pic_name, is_bid) VALUES(%s,%s,%s,%s);", [self.user_id], self.pic_url, self.pic_name, self.is_bid)
+
+    def edit_post(self, n_name, n_is_bid):
+        common.sql_write(f"UPDATE showcase SET name=%s, is_bid=%s WHERE id={self.id};", [n_name, n_is_bid])
 
     def delete_post(self):
         common.sql_write(f"DELETE FROM showcase WHERE id={self.id};")

@@ -1,6 +1,6 @@
 NFT + IG = +A SHOWCASE
 
-1. sign up - log in
+1. sign up - log in /
 
    / set sign up & log in page .html
    / function for sign up .py

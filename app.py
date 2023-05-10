@@ -4,16 +4,9 @@ import psycopg2
 from models import user, showcase
 
 app = Flask(__name__)
+app.config["SECRET_KEY"] = "My secret key"
 
-@app.route('/')
-def index():
-    connection = psycopg2.connect(host=os.getenv("PGHOST"), user=os.getenv("PGUSER"), password=os.getenv("PGPASSWORD"), port=os.getenv("PGPORT"), dbname=os.getenv("PGDATABASE"))
-    cursor = connection.cursor()
-    cursor.execute("SELECT * FROM users;")
-    results = cursor.fetchall()
-    connection.close()
-    return f"{results[0]}"
-
+connection = psycopg2.connect(host=os.getenv("PGHOST"), user=os.getenv("PGUSER"), password=os.getenv("PGPASSWORD"), port=os.getenv("PGPORT"), dbname=os.getenv("PGDATABASE"))
 
 @app.route("/signup")
 def signup():
@@ -36,12 +29,12 @@ def login_action():
     email = request.form.get('email')
     password = request.form.get('password')
 
-    curr_user = user.User(email=email, password=password)
-    curr_user = curr_user.get_user_if_valid()
+    n_user = user.User(email=email, password=password)
+    n_user = n_user.get_user_if_valid()
 
-    if curr_user:
-        session["user_id"] = curr_user["id"]
-        session["user_name"] = curr_user["username"]
+    if n_user:
+        session["user_id"] = n_user["id"]
+        session["user_email"] = n_user["email"]
         return redirect("/feed")
     else:
         return render_template("login.html", message = "Invalid account! Try again or If you haven't register, please sign up!")
@@ -69,17 +62,46 @@ def add_new_post():
     form = request.form
 
     new_post = showcase.Showcase(
-    user_id = session["user_id"],
-    pic_url = form.get("pic_url"),
-    pic_name = form.get("pic_name"),
-    is_bid = form.get("bid")
+        user_id = session("user_id"),
+        pic_url = form.get("pic_url"),
+        pic_name = form.get("pic_name"),
+        is_bid = form.get("bid")
     )
 
     new_post.new_post()
 
     return redirect("/feed")
 
+# UPDATE
+@app.route("/form/post/edit/<id>")
+def edit_post_form(id):
+    if session.get("user_id", ""):
+        showcase_obj = showcase.Showcase(id=id)
+        return render_template("edit_post.html", post = showcase.get_post())
+    else:
+        return redirect("/feed")
 
+@app.route("/post/edit/<id>", methods=["POST"])
+def edit_food(id):
+    form = request.form
+    post_obj = showcase.Showcase(id=id)
+    post_obj.edit_post(form.get("pic_name"), form.get("is_bid"))
+    return redirect("/feed")
+
+# DELETE
+@app.route("/form/post/delete/<id>")
+def delete_form(id):
+    if (session.get("user_id", "")) and (bid != "True"):
+        post_obj = showcase.Showcase(id=id)
+        return render_template("delete_post.html", post = post_obj.get_post())
+    else:
+        return redirect ("/feed")
+
+@app.route("/post/delete", methods=["POST"])
+def delete_post():
+    post_obj = showcase.Showcase(id=request.form.get("id"))
+    post_obj.delete_post()
+    return redirect ("/feed")
 
 if __name__ == '__main__':
     app.run(debug=True,port=os.getenv("PORT", default=5000))
