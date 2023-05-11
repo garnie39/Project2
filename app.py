@@ -6,7 +6,9 @@ from models import user, showcase
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "My secret key"
 
-connection = psycopg2.connect(host=os.getenv("PGHOST"), user=os.getenv("PGUSER"), password=os.getenv("PGPASSWORD"), port=os.getenv("PGPORT"), dbname=os.getenv("PGDATABASE"))
+@app.route("/")
+def connection():
+    connection = psycopg2.connect(host=os.getenv("PGHOST"), user=os.getenv("PGUSER"), password=os.getenv("PGPASSWORD"), port=os.getenv("PGPORT"), dbname=os.getenv("PGDATABASE"))
 
 @app.route("/signup")
 def signup():
