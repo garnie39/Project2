@@ -30,7 +30,7 @@ class Posts:
         return self.convert_to_dict(post)
 
     def likes(self):
-
+        pass
 
     def new_post(self):
         common.sql_write("INSERT INTO showcase (user_id, pic_url, pic_name, is_bid) VALUES(%s,%s,%s,%s);", [self.user_id], self.pic_url, self.pic_name, self.is_bid)
