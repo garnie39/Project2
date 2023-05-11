@@ -6,10 +6,6 @@ from models import user, showcase
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "My secret key"
 
-@app.route("/")
-def connection():
-    connection = psycopg2.connect(host=os.getenv("PGHOST"), user=os.getenv("PGUSER"), password=os.getenv("PGPASSWORD"), port=os.getenv("PGPORT"), dbname=os.getenv("PGDATABASE"))
-
 @app.route("/signup")
 def signup():
     return render_template("signup.html")
@@ -84,7 +80,7 @@ def edit_post_form(id):
         return redirect("/feed")
 
 @app.route("/post/edit/<id>", methods=["POST"])
-def edit_food(id):
+def edit_post(id):
     form = request.form
     post_obj = showcase.Showcase(id=id)
     post_obj.edit_post(form.get("pic_name"), form.get("is_bid"))
@@ -93,9 +89,11 @@ def edit_food(id):
 # DELETE
 @app.route("/form/post/delete/<id>")
 def delete_form(id):
-    if (session.get("user_id", "")) and (bid != "True"):
-        post_obj = showcase.Showcase(id=id)
-        return render_template("delete_post.html", post = post_obj.get_post())
+    post_selected = showcase.Showcase(user_id=request.form.get("user_id"))
+    if (session.get("user_id") == post_selected) and (is_bid == "False"):
+        if session.get("user_id", ""):
+            post_obj = showcase.Showcase(id=id)
+            return render_template("delete_post.html", post = post_obj.get_post())
     else:
         return redirect ("/feed")
 
