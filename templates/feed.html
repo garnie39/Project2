@@ -5,6 +5,32 @@
 {%block content%}
 
 <ul>
-  <li></li>
+  <li>
+    <h2>A+ SHOWCASE</h2>
+  </li>
+  {% for post in feed_item %}
+  <li>
+    {% if post["pic_url"] %}
+      <img src="{{ post['pic_url'] }}">
+    {% endif %}
+    <div class="heart-btn">
+      <div class="content">
+        <span class="heart"></span>
+        <span class="like">Like</span>
+        <span class="num">{{ post['is_like'] }}</span>
+      </div>
+    </div> 
+    <span>
+      {{ post['pic_name'] }}
+    </span>
+    <div class="link">
+      <a href="/form/post/delete/{{ post['id'] }}"><i class="fa-solid fa-delete-right"></i></a>
+      <a href="/form/post/edit/{{ post['id'] }}"><i class="fa-solid fa-pen-to-square"></i></a>
+    </div>
+    <span>
+      {{ post['comment'] }}
+    </span>
+  </li>
+  {% endfor %}
 </ul>
 {%endblock%}

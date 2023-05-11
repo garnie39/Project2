@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, jsonify
 import os
 import psycopg2
 from models import user, showcase
@@ -44,10 +44,10 @@ def logout():
     return redirect("/feed")
 
 # READ
-@app.route("/feed")
+@app.route("/")
 def feed():
-    showcase_obj = showcase.Showcase()
-    dict = showcase_obj.get_all_showcase()
+    showcase_obj = showcase.Posts()
+    dict = showcase_obj.get_all_posts()
     return render_template("feed.html", feed_item = dict)
 
 # CREATE
@@ -59,7 +59,7 @@ def new_post():
 def add_new_post():
     form = request.form
 
-    new_post = showcase.Showcase(
+    new_post = showcase.Posts(
         user_id = session("user_id"),
         pic_url = form.get("pic_url"),
         pic_name = form.get("pic_name"),
@@ -74,7 +74,7 @@ def add_new_post():
 @app.route("/form/post/edit/<id>")
 def edit_post_form(id):
     if session.get("user_id", ""):
-        showcase_obj = showcase.Showcase(id=id)
+        showcase_obj = showcase.Posts(id=id)
         return render_template("edit_post.html", post = showcase.get_post())
     else:
         return redirect("/feed")
@@ -82,24 +82,24 @@ def edit_post_form(id):
 @app.route("/post/edit/<id>", methods=["POST"])
 def edit_post(id):
     form = request.form
-    post_obj = showcase.Showcase(id=id)
+    post_obj = showcase.Posts(id=id)
     post_obj.edit_post(form.get("pic_name"), form.get("is_bid"))
     return redirect("/feed")
 
 # DELETE
 @app.route("/form/post/delete/<id>")
 def delete_form(id):
-    post_selected = showcase.Showcase(user_id=request.form.get("user_id"))
+    post_selected = showcase.Posts(user_id=request.form.get("user_id"))
     if (session.get("user_id") == post_selected) and (is_bid == "False"):
         if session.get("user_id", ""):
-            post_obj = showcase.Showcase(id=id)
+            post_obj = showcase.Posts(id=id)
             return render_template("delete_post.html", post = post_obj.get_post())
     else:
         return redirect ("/feed")
 
 @app.route("/post/delete", methods=["POST"])
 def delete_post():
-    post_obj = showcase.Showcase(id=request.form.get("id"))
+    post_obj = showcase.Posts(id=request.form.get("id"))
     post_obj.delete_post()
     return redirect ("/feed")
 

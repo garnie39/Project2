@@ -1,3 +1,0 @@
-DROP TABLE IF EXISTS post;
-
-CREATE TABLE post(id SERIAL PRIMARY KEY, user_id BIGINT, comment TEXT, is_like BOOLEAN, is_bid BOOLEAN);
