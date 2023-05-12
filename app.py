@@ -83,14 +83,15 @@ def add_like(id):
     
     if "None" == current_like:
         current_like = ""
-    elif str(session['user_id']) in current_like:
+    if str(session['user_id']) in current_like:
         print(current_like)
         if str(session['user_id']) + "," in current_like:
             current_like = current_like.replace(str(session['user_id']) + ",", "")
         else:
             current_like = current_like.replace(str(session['user_id']), "")   
     else:
-        current_like += ","
+        if len(current_like) > 0:
+            current_like += ","
         current_like += str(session['user_id'])
     print(current_like)
     
