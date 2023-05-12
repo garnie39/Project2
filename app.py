@@ -81,13 +81,14 @@ def add_like(id):
     item = post.get_post()
     current = item['user_like']
     current_like = current.split(',')
-    current_like.append(str(session['user_id']))
-    current_like_str = ','.join(current_like)
     print(current_like)
-    like = common.sql_write("UPDATE showcase SET user_like=%s WHERE id=%s;", [current_like, id])
+    current_like.append(str(session['user_id']))
+    current_like_str = "{"+",".join(current_like)+"}"
+    print(current_like_str)
+    like = common.sql_write("UPDATE showcase SET user_like=%s WHERE id=%s;", [current_like_str, id])
     result = post.get_post()
     print(result)
-    return render_template("feed.html")
+    return redirect("/")
 
 # READ
 @app.route("/<username>/")
