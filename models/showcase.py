@@ -1,14 +1,14 @@
 from models import common
 
 class Posts:
-    def __init__(self, id=0, user_id=None, pic_url=None, pic_name=None, is_bid=None, username=None,user_like=0, comment=None): 
+    def __init__(self, id=0, user_id=None, pic_url=None, pic_name=None, is_bid=None, username=None,user_like=0): #comment=None
         self.id = id
         self.user_id = user_id
         self.pic_url = pic_url
         self.pic_name = pic_name
         self.is_bid = is_bid
         self.user_like = user_like
-        self.comment = comment
+        # self.comment = comment
         self.username = username
 
     def convert_to_dict(self, post):
@@ -20,7 +20,7 @@ class Posts:
             "pic_name": post[4],
             "is_bid": post[5],
             "user_like": str(post[6]),
-            "comment": post[7]
+            # "comment": post[7]
         }
 
     def get_all_posts(self):
@@ -73,14 +73,4 @@ class Bids:
         return [self.convert_to_dict(post) for post in all_posts] 
 
     def user_bid(self):
-        pass
-
-class Reacts:
-    def __init__(self, id=0, user_id=None, user_like=0, comment=None):
-        self.id = id
-        self.user_id = user_id
-        self.user_like = user_like
-        self.comment = comment
-
-    def likes(self):
         pass

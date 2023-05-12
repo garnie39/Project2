@@ -22,13 +22,10 @@
         {% else %}
         <a href="/login">Login</a>
         <a href="/signup">Signup</a>
+        <a href="/coin">Coin: {{ session['coin'] }}</a>
         {% endif %}
       </nav>
-      <button id="coinbtn" class="btn">
-        <i class="fa-regular fa-coin-front"></i>
-      </button>
-      <i class="fa-regular fa-heart"></i>
-      <i class="fa-solid fa-heart"></i>
+      
     </header>
     <section>{% block content %} {% endblock %}</section>
   </body>
