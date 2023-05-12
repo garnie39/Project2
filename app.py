@@ -53,7 +53,9 @@ def feed():
     dict = showcase_obj.get_all_posts()
     for dic in dict:
         if len(dic['user_like']) > 0 and 'None' not in dic['user_like']:
-            dic['total_like'] = len(dic['user_like'].split(','))
+            dic['total_like'] = str(len(dic['user_like'].split(',')))+" Likes"
+        else:
+            dic['total_like'] = ""
         if str(session['user_id']) in dic['user_like']:
             dic['user_like'] = True
         else:
