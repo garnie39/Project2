@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block head %} <script src="../static/newpost.js" defer></script> {% endblock %}
+{% block title %} Edit Post {% endblock %}
+
+{% block content %} A+ EDIT POST
+<form class="editpost" action="/edit/{{ id }}" method="post">
+    <input hidden name="id" value="{{ post['id'] }}">
+    <label for="pic_name">Caption:</label>
+    <input type="text" name="pic_name" />
+    <br />
+    <p>Is this picture for bid?</p>
+    <input type="radio" id="bidYes" name="bid" value="True" />
+    <label for="bidYes">Yes</label>
+    <input type="radio" id="bidNo" name="bid" value="False" />
+    <label for="bidNo">No</label>
+    <br />
+    <input type="submit" />
+</form>   
+{% endblock %}

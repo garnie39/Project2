@@ -4,8 +4,8 @@
 
 {%block content%}
 <ul>
+    <h2 class="header"> {{ session['user_username'] }} BID A+ </h2>
     {% for post in user_posts %}
-    <h2 class="header"> {{ post['username'] }} A+ </h2>
     <li>
         {% if post["pic_url"] %}
         <img src="{{ post['pic_url'] }}">
@@ -18,12 +18,11 @@
             </div>
         </div> 
         <div class="link">
-            <a href="/form/post/delete/{{ post['id'] }}">delete</a>
-            <a href="/form/post/edit/{{ post['id'] }}">edit</a>
+            <a href="/form/edit/{{ post['id'] }}">edit</a>
+            <a href="/form/delete/{{ post['id'] }}">delete</a>
         </div>
-        {% if post["is_bid"] == "True" %}
-            <a href="/{{ post['id'] }}/bid">{{ post['pic_name'] }} bid</a>
-        {% endif %}
+        <a href="/{{ post['id'] }}/bid">BID {{ post['pic_name'] }}</a>
+        <br>
         <span>
         {{ post['username'] }} : {{ post['pic_name'] }}
         </span>

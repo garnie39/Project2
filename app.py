@@ -51,7 +51,10 @@ def logout():
 def feed():
     showcase_obj = showcase.Posts()
     dict = showcase_obj.get_all_posts()
-    return render_template("feed.html", feed_item = dict)
+    for dic in dict:
+        bid = dic['is_bid']
+        # print(bid)
+    return render_template("feed.html", feed_item = dict, result = bid)
 
 # CREATE
 @app.route("/form/newpost")
@@ -67,47 +70,52 @@ def add_new_post():
         pic_name = request.form.get("pic_name"),
         is_bid = request.form.get("bid")
     )
-
     new_post.new_post()
-
+    
     return redirect("/")
 
 # READ
 @app.route("/<username>/")
-def user_page(username):
+def user_page_post(username):
     user_id = session['user_id']
-    user_posts = common.sql_read(f"SELECT * FROM showcase WHERE user_id={user_id};")
+    user_posts = common.sql_read("SELECT * FROM showcase WHERE user_id=%s AND is_bid=%s;", [user_id, False])
     all_posts = showcase.Posts()
     all_user_posts = [all_posts.convert_to_dict(post) for post in user_posts] 
     return render_template("profile_post.html", user_posts = all_user_posts)
-
+        
 # READ
-
+@app.route("/<username>/bid")
+def user_page_bid(username):
+    user_id = session['user_id']
+    user_posts = common.sql_read("SELECT * FROM showcase WHERE user_id=%s AND is_bid=%s;", [user_id, True])
+    all_posts = showcase.Posts()
+    all_user_posts = [all_posts.convert_to_dict(post) for post in user_posts] 
+    return render_template("profile_bid.html", user_posts = all_user_posts)
+        
 # UPDATE
-@app.route("/form/post/edit/<id>")
+@app.route("/form/edit/<id>")
 def edit_post_form(id):
+    post_selected = showcase.Posts(id=request.form.get("id"))
     if session.get("user_id", ""):
-        showcase_obj = showcase.Posts(id=id)
-        return render_template("edit_post.html", post = showcase.get_post())
+        post_obj = showcase.Posts(id=id)
+        return render_template("edit_post.html", post = post_obj.get_edit_post())
     else:
-        return redirect("/")
-
-
+        return redirect ("/")
+    
 @app.route("/post/edit/<id>", methods=["POST"])
-def edit_post(id):
+def edit_post():
     form = request.form
-    post_obj = showcase.Posts(id=id)
-    post_obj.edit_post(form.get("pic_name"), form.get("is_bid"))
+    post_obj = showcase.Posts(id=form.get("id"))
+    post_obj.edit_post(form.get("pic_name"), forrm.get("bid"))
     return redirect("/")
 
 # DELETE
-@app.route("/form/post/delete/<id>")
+@app.route("/form/delete/<id>")
 def delete_form(id):
     post_selected = showcase.Posts(user_id=request.form.get("user_id"))
-    if (session.get("user_id") == post_selected) and (is_bid == "False"):
-        if session.get("user_id", ""):
-            post_obj = showcase.Posts(id=id)
-            return render_template("delete_post.html", post = post_obj.get_post())
+    if session.get("user_id", ""):
+        post_obj = showcase.Posts(id=id)
+        return render_template("delete.html", post = post_obj.get_post())
     else:
         return redirect ("/")
 

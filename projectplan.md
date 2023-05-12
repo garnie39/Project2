@@ -37,9 +37,9 @@ NFT + IG = +A SHOWCASE
      - user_credit_coin
      - add post
      - feed
-   - function to display all posts .py
+   / function to display all posts .py
    - function to display user_credit_coin .py
-   - function to add post .py
+   / function to add post .py
      / CREATE TABLE showcase
      / id SERRIAL PRIMARY KEY
      / username TEXT

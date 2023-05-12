@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block head %} <script src="../static/newpost.js" defer></script> {% endblock %}
+{% block title %} Delete Post {% endblock %}
+
+{% block content %} A+ DELETE POST
+
+<form>
+    <p>Are you sure you want to delete?</p>
+    <input hidden name="id" value="{{ post['id'] }}">
+    <input type="submit" value="Yes" formmethod="POST" formaction="/post/delete">
+    <input type="submit" value="No" formaction="/">
+</form>
+
+{% endblock %}
