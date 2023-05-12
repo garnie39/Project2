@@ -44,6 +44,7 @@ def login_action():
 def logout():
     session["user_id"] = None
     session["user_username"] = None
+    session["user_coin"] = None
     return redirect("/")
 
 # READ

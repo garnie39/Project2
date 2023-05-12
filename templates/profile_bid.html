@@ -10,18 +10,34 @@
         {% if post["pic_url"] %}
         <img src="{{ post['pic_url'] }}">
         {% endif %}
-        <div class="heart-btn">
-            <div class="content">
-                <span class="heart"></span>
-                <span class="like">Like</span>
-                <span class="num">{{ post['is_like'] }}</span>
-            </div>
+        {% if post['user_like'] %}
+        <div class="heart-btn-filled">
+            <a href="/likes/add/{{ post['id'] }}">
+            <svg width="25px" height="25px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Interface / Heart_01"> <path id="Vector" d="M12 7.69431C10 2.99988 3 3.49988 3 9.49991C3 15.4999 12 20.5001 12 20.5001C12 20.5001 21 15.4999 21 9.49991C21 3.49988 14 2.99988 12 7.69431Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g> </g></svg></a>
+            {{ post['total_like'] }}
         </div> 
+        {% else %}
+        <div class="heart-btn-unfilled">
+            <a href="/likes/add/{{ post['id'] }}">
+            <svg fill="#000000" height="25px" width="25px" viewBox="-4 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #242424;"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>heart</title> <path d="M18.188 6.094c5.188 0 6.906 6 5.094 9.281-2.781 5.094-11.281 10.5-11.281 10.5s-8.531-5.406-11.281-10.5c-1.813-3.281-0.125-9.281 5.094-9.281 4.813 0 6.031 4.156 6.188 4.781 0.156-0.625 1.375-4.781 6.188-4.781z"></path></g></svg></a>
+            {{ post['total_like'] }}
+        </div> 
+        {% endif %}
         <div class="link">
-            <a href="/form/edit/{{ post['id'] }}">edit</a>
-            <a href="/form/delete/{{ post['id'] }}">delete</a>
+            <a href="/form/edit/{{ post['id'] }}">
+                <svg width="25px" height="25px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13.0207 5.82839L15.8491 2.99996L20.7988 7.94971L17.9704 10.7781M13.0207 5.82839L3.41405 15.435C3.22652 15.6225 3.12116 15.8769 3.12116 16.1421V20.6776H7.65669C7.92191 20.6776 8.17626 20.5723 8.3638 20.3847L17.9704 10.7781M13.0207 5.82839L17.9704 10.7781" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="/form/delete/{{ post['id'] }}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" fill="currentColor" class="bi bi-x-square" viewBox="0 0 16 16">
+                <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/> </svg>
+            </a>
         </div>
-        <a href="/{{ post['id'] }}/bid">BID {{ post['pic_name'] }}</a>
+        <a href="/{{ post['id'] }}/bid">
+            <svg height="30px" width="30px" viewBox="-4 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-coin">
+            <path d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9H5.5zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518l.087.02z"/> <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/> </svg></a>
         <br>
         <span>
         {{ post['username'] }} : {{ post['pic_name'] }}
