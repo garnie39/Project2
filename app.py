@@ -79,24 +79,20 @@ def add_new_post():
 def add_like(id):
     post = showcase.Posts(id=id)
     item = post.get_post()
-    # print(item)
     current_like = item['user_like']
     
     if "None" == current_like:
         current_like = ""
     else:
-        # unlike = current_like.split(',')
-        # print(unlike)
-        # unlike.remove("9")
-        # print(unlike)
-        SPLITTER = ""
-        if len(current_like) > 0:
-            current_like += ","
-            SPLITTER = ","
-    # print(current_like)
+        # if len(current_like) > 0:
+        #     current_like += ","
         if str(session['user_id']) in current_like:
-            current_like = current_like.replace(str(session['user_id'])+ SPLITTER, "")
+            if str(session['user_id']) + "," in current_like:
+                current_like = current_like.replace(str(session['user_id']) + ",", "")
+            else:
+                current_like = current_like.replace(str(session['user_id']), "")   
         else:
+            current_like += ","
             current_like += str(session['user_id'])
     print(current_like)
     
