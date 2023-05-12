@@ -74,6 +74,22 @@ def add_new_post():
     
     return redirect("/")
 
+# UPDATE
+@app.route("/likes/add/<id>")
+def add_like(id):
+    user_id = session['user_id']
+    post = common.sql_read("SELECT * FROM showcase WHERE id=%s;", [id])
+    like = []
+    like.append(user_id)
+    print(list(like))
+    like_list = common.sql_write(f"UPDATE showcase SET user_like=%s WHERE id=%s;", [like, id])
+    print(post)
+    # current_like = post[0][6]
+    # print(current_like)
+    # current_like_list = current_like.split(',')
+    # print(current_like_list)
+    return redirect("/", )
+
 # READ
 @app.route("/<username>/")
 def user_page_post(username):
@@ -98,9 +114,11 @@ def edit_post_form(id):
     post_selected = showcase.Posts(id=request.form.get("id"))
     if session.get("user_id", ""):
         post_obj = showcase.Posts(id=id)
-        return render_template("edit_post.html", post = post_obj.get_edit_post())
+        post = post_obj.get_edit_post()
+        print(post)
+        return render_template("edit_post.html", post = post)
     else:
-        return redirect ("/")
+        return render_template("error.html", message="You are not authorized to edit this post.")
     
 @app.route("/post/edit/<id>", methods=["POST"])
 def edit_post():
@@ -112,18 +130,25 @@ def edit_post():
 # DELETE
 @app.route("/form/delete/<id>")
 def delete_form(id):
-    post_selected = showcase.Posts(user_id=request.form.get("user_id"))
     if session.get("user_id", ""):
         post_obj = showcase.Posts(id=id)
-        return render_template("delete.html", post = post_obj.get_post())
+        post = post_obj.get_post()
+        if post['user_id'] == session["user_id"] and post['is_bid'] == "False":
+            return render_template("delete.html", post=post)
+        else:
+            return render_template("error.html", message="You are not authorized to delete this post.")
     else:
         return redirect ("/")
 
 @app.route("/post/delete", methods=["POST"])
 def delete_post():
-    post_obj = showcase.Posts(id=request.form.get("id"))
-    post_obj.delete_post()
-    return redirect ("/")
+    form = request.form
+    post_obj = showcase.Posts(id=form.get("id"), user_id=form.get("user_id"))
+    if form.get("user_id") == session.get("user_id", "") and post['is_bid'] == "False":
+        post_obj.delete_post()
+        return redirect ("/")
+    else:
+        return render_template("error.html", message="You are not authorized to delete this post.")
 
 if __name__ == '__main__':
     app.run(debug=True,port=os.getenv("PORT", default=5000))

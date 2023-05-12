@@ -1,7 +1,7 @@
 from models import common
 
 class Posts:
-    def __init__(self, id=0, user_id=None, pic_url=None, pic_name=None, is_bid=None, user_like=None, comment=None, username=None):
+    def __init__(self, id=0, user_id=None, pic_url=None, pic_name=None, is_bid=None, username=None,user_like=0, comment=None): 
         self.id = id
         self.user_id = user_id
         self.pic_url = pic_url
@@ -30,9 +30,6 @@ class Posts:
     def get_post(self):
         post = common.sql_read("SELECT * FROM showcase WHERE id=%s;", [self.id])[0]
         return self.convert_to_dict(post)
-
-    def likes(self):
-        pass
     
     def get_edit_post(self):
         post = common.sql_read2("SELECT * FROM showcase WHERE id=%s AND is_bid=%s;", [self.id, False])
@@ -49,25 +46,25 @@ class Posts:
 
 
 class Bids:
-    def __init__(self, id=0, user_id=None, pic_url=None, pic_name=None, is_bid=None, user_like=None, comment=None, username=None):
+    def __init__(self, id=0, user_id=None, is_bid=None, username=None):
         self.id = id
         self.user_id = user_id
-        self.pic_url = pic_url
-        self.pic_name = pic_name
+        # self.pic_url = pic_url
+        # self.pic_name = pic_name
         self.is_bid = is_bid
-        self.user_like = user_like
-        self.comment = comment
+        # self.user_like = user_like
+        # self.comment = comment
         self.username = username
 
     def convert_to_dict(self, post):
         return {
             "id": str(post[0]),
             "user_id": str(post[1]),
-            "pic_url": post[3],
-            "pic_name": post[4],
+            # "pic_url": post[3],
+            # "pic_name": post[4],
             "is_bid": post[5],
-            "user_like": str(post[6]),
-            "comment": post[7],
+            # "user_like": str(post[6]),
+            # "comment": post[7],
             "username": post[2]
         }
 
@@ -76,4 +73,14 @@ class Bids:
         return [self.convert_to_dict(post) for post in all_posts] 
 
     def user_bid(self):
+        pass
+
+class Reacts:
+    def __init__(self, id=0, user_id=None, user_like=0, comment=None):
+        self.id = id
+        self.user_id = user_id
+        self.user_like = user_like
+        self.comment = comment
+
+    def likes(self):
         pass

@@ -10,25 +10,25 @@
   </head>
   <body>
     <header>
-        nav>
-        <a href="/About">About</a>
-        <a href="/">A+ Showcase</a>
-        <a href="/bid">A+ Bid</a>
-        {% if session['user_username'] %} Welcome {{ session['user_username'] }} to A+ SHOWCASE
-        <a href="/addcoins">Add Coins</a>
-        <a href="/form/newpost">New +</a>
-        <a href="/{{ session['user_username'] }}">{{ session['user_username'] }}</a>
-        <a href="/logout">Logout</a>
-        {% else %}
-        <a href="/login">Login</a>
-        <a href="/signup">Signup</a>
-        {% endif %}
-      </nav>
-      <button id="coinbtn" class="btn">
-        <i class="fa-regular fa-coin-front"></i>
-      </button>
-      <i class="fa-regular fa-heart"></i>
-      <i class="fa-solid fa-heart"></i>
+        <nav>
+            <a href="/About">About</a>
+            <a href="/">A+ Showcase</a>
+            <a href="/bid">A+ Bid</a>
+            {% if session['user_username'] %} Welcome {{ session['user_username'] }} to A+ SHOWCASE
+            <a href="/addcoins">Add Coins</a>
+            <a href="/form/newpost">New +</a>
+            <a href="/{{ session['user_username'] }}">{{ session['user_username'] }}</a>
+            <a href="/logout">Logout</a>
+            {% else %}
+            <a href="/login">Login</a>
+            <a href="/signup">Signup</a>
+            {% endif %}
+        </nav>
+        <button id="coinbtn" class="btn">
+            <i class="fa-regular fa-coin-front"></i>
+        </button>
+        <i class="fa-regular fa-heart"></i>
+        <i class="fa-solid fa-heart"></i>
     </header>
     <section>
         <a href="/{{ session['user_username'] }}/">POST</a>

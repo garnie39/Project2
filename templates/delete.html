@@ -7,6 +7,7 @@
 <form>
     <p>Are you sure you want to delete?</p>
     <input hidden name="id" value="{{ post['id'] }}">
+    <input hidden name="user_id" value="{{ post['user_id'] }}">
     <input type="submit" value="Yes" formmethod="POST" formaction="/post/delete">
     <input type="submit" value="No" formaction="/">
 </form>

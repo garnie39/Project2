@@ -11,11 +11,7 @@
       <img src="{{ post['pic_url'] }}">
     {% endif %}
     <div class="heart-btn">
-      <div class="content">
-        <span class="heart"></span>
-        <span class="like">Like</span>
-        <span class="num">{{ post['is_like'] }}</span>
-      </div>
+      <a href="/likes/add/{{ post['id'] }}">Like {{ post['is_like'] }}</a>
     </div> 
     <div class="link">
       <a href="/{{ post['id'] }}">detail</a>
