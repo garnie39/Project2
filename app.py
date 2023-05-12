@@ -52,6 +52,12 @@ def feed():
     showcase_obj = showcase.Posts()
     dict = showcase_obj.get_all_posts()
     for dic in dict:
+        if len(dic['user_like']) > 0 and 'None' not in dic['user_like']:
+            dic['total_like'] = len(dic['user_like'].split(','))
+        if str(session['user_id']) in dic['user_like']:
+            dic['user_like'] = True
+        else:
+            dic['user_like'] = False
         bid = dic['is_bid']
         # print(bid)
     return render_template("feed.html", feed_item = dict, result = bid)
