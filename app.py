@@ -77,18 +77,17 @@ def add_new_post():
 # UPDATE
 @app.route("/likes/add/<id>")
 def add_like(id):
-    user_id = session['user_id']
-    post = common.sql_read("SELECT * FROM showcase WHERE id=%s;", [id])
-    like = []
-    like.append(user_id)
-    print(list(like))
-    like_list = common.sql_write(f"UPDATE showcase SET user_like=%s WHERE id=%s;", [like, id])
-    print(post)
-    # current_like = post[0][6]
-    # print(current_like)
-    # current_like_list = current_like.split(',')
-    # print(current_like_list)
-    return redirect("/", )
+    post = showcase.Posts(id=id)
+    item = post.get_post()
+    current = item['user_like']
+    current_like = current.split(',')
+    current_like.append(str(session['user_id']))
+    current_like_str = ','.join(current_like)
+    print(current_like)
+    like = common.sql_write("UPDATE showcase SET user_like=%s WHERE id=%s;", [current_like, id])
+    result = post.get_post()
+    print(result)
+    return render_template("feed.html")
 
 # READ
 @app.route("/<username>/")
