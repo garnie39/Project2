@@ -3,11 +3,8 @@
 {%block title%}feed{%endblock%}
 
 {%block content%}
-
 <ul>
-  <li>
-    <h2>A+ SHOWCASE</h2>
-  </li>
+  <h2 class="header">A+ SHOWCASE</h2>
   {% for post in feed_item %}
   <li>
     {% if post["pic_url"] %}
@@ -20,13 +17,16 @@
         <span class="num">{{ post['is_like'] }}</span>
       </div>
     </div> 
-    <span>
-      {{ post['pic_name'] }}
-    </span>
     <div class="link">
-      <a href="/form/post/delete/{{ post['id'] }}"><i class="fa-solid fa-delete-right"></i></a>
-      <a href="/form/post/edit/{{ post['id'] }}"><i class="fa-solid fa-pen-to-square"></i></a>
+      <a href="/form/post/delete/{{ post['id'] }}">delete</a>
+      <a href="/form/post/edit/{{ post['id'] }}">edit</a>
     </div>
+    {% if post["is_bid"] == "True" %}
+      <a href="/{{ post['id'] }}/bid">{{ post['pic_name'] }} bid</a>
+    {% endif %}
+    <span>
+      {{ post['username']}} : {{ post['pic_name'] }}
+    </span>
     <span>
       {{ post['comment'] }}
     </span>

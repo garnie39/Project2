@@ -1,7 +1,7 @@
 from models import common
 
 class Posts:
-    def __init__(self, id=0, user_id=None, pic_url=None, pic_name=None, is_bid=None, user_like=None, comment=None):
+    def __init__(self, id=0, user_id=None, pic_url=None, pic_name=None, is_bid=None, user_like=None, comment=None, username=None):
         self.id = id
         self.user_id = user_id
         self.pic_url = pic_url
@@ -9,16 +9,18 @@ class Posts:
         self.is_bid = is_bid
         self.user_like = user_like
         self.comment = comment
+        self.username = username
 
     def convert_to_dict(self, post):
         return {
             "id": str(post[0]),
             "user_id": str(post[1]),
-            "pic_url": post[2],
-            "pic_name": post[3],
-            "is_bid": post[4],
-            "user_like": str(post[5]),
-            "comment": post[6]
+            "pic_url": post[3],
+            "pic_name": post[4],
+            "is_bid": post[5],
+            "user_like": str(post[6]),
+            "comment": post[7],
+            "username": post[2]
         }
 
     def get_all_posts(self):
@@ -33,10 +35,25 @@ class Posts:
         pass
 
     def new_post(self):
-        common.sql_write("INSERT INTO showcase (user_id, pic_url, pic_name, is_bid) VALUES(%s,%s,%s,%s);", [self.user_id], self.pic_url, self.pic_name, self.is_bid)
+        common.sql_write("INSERT INTO showcase (user_id, pic_url, pic_name, is_bid, username) VALUES(%s,%s,%s,%s,%s);", [self.user_id, self.pic_url, self.pic_name, self.is_bid, self.username])
 
     def edit_post(self, n_name, n_is_bid):
         common.sql_write(f"UPDATE showcase SET name=%s, is_bid=%s WHERE id={self.id};", [n_name, n_is_bid])
 
     def delete_post(self):
         common.sql_write(f"DELETE FROM showcase WHERE id={self.id};")
+
+
+class Bids:
+    def __init__(self, id=0, user_id=None, pic_url=None, pic_name=None, is_bid=None, user_like=None, comment=None, username=None):
+        self.id = id
+        self.user_id = user_id
+        self.pic_url = pic_url
+        self.pic_name = pic_name
+        self.is_bid = is_bid
+        self.user_like = user_like
+        self.comment = comment
+        self.username = username
+
+    def get_all_bids(self):
+        pass    

@@ -1,6 +1,8 @@
-{% extends 'base.html'%} {%block head%}
-<script src="../static/newpost.js" defer></script>
-{%block title%}New Post{%endblock%} {%block body%} Sign up with A+ SHOWCASE
+{% extends 'base.html' %}
+{% block head %} <script src="../static/newpost.js" defer></script> {% endblock %}
+{% block title %} New Post {% endblock %}
+
+{% block content %} A+ NEW POST
 <form class="newpost" action="/newpost" method="post">
   <label for="pic_url">Picture:</label>
   <input type="text" name="pic_url" />

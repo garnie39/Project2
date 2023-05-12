@@ -14,6 +14,7 @@ class User:
             user_formatted = {"id": user[0], "username": user[1], "email": user[2], "hashed_password": user[3]}
             if bcrypt.checkpw(self.password.encode(), user_formatted["hashed_password"].encode()):
                 return user_formatted
+                print(user_formatted)
             return None
         return None
     

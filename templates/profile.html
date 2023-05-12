@@ -17,7 +17,7 @@
         <a href="/form/newpost">New +</a>
         <a href="/About">About</a>
         {% if session['user_username'] %} Hello {{ session['user_username'] }} 
-        <a href="/{{ session['user_username'] }}">{{ session['user_username'] }}</a>
+        <a href="/{{ session['user_username'] }}/">{{ session['user_username'] }}</a>
         <a href="/logout">Logout</a>
         {% else %}
         <a href="/login">Login</a>
@@ -30,6 +30,10 @@
       <i class="fa-regular fa-heart"></i>
       <i class="fa-solid fa-heart"></i>
     </header>
-    <section>{%block content%} {%endblock%}</section>
+    <section>
+        <a href="/{{ session['user_username'] }}/">POST</a>
+        <a href="/{{ session['user_username'] }}/bid">BID</a>
+        {%block content%} {%endblock%}
+    </section>
   </body>
 </html>

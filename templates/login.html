@@ -2,6 +2,9 @@
 {%block title%}login{%endblock%}
 {%block content%} A+ SHOWCASE Login
 <form class="login" action="/login" method="post">
+  <label for="username">Username:</label>
+  <input type="usename" name="username" />
+  <br />
   <label for="email">Email Address:</label>
   <input type="email" name="email" />
   <br />
@@ -10,5 +13,5 @@
   <br />
   <input type="submit" />
 </form>
-<p>{{message}}</p>
+<p>{{ message }}</p>
 {%endblock%}

@@ -19,7 +19,7 @@ NFT + IG = +A SHOWCASE
    - <nav> .html
      / user page
        - user_credit
-       - user_post
+       / user_post
          - showcase
          - bid
        - user_profile_pic

@@ -1,0 +1,37 @@
+{% extends 'profile.html'%}
+{%block head%} {%endblock%}
+{%block title%}{{ session['user_username'] }}{%endblock%}
+
+{%block content%}
+<ul>
+    {% for post in user_posts %}
+    <h2 class="header"> {{ post['username'] }} A+ </h2>
+    <li>
+        {% if post["pic_url"] %}
+        <img src="{{ post['pic_url'] }}">
+        {% endif %}
+        <div class="heart-btn">
+            <div class="content">
+                <span class="heart"></span>
+                <span class="like">Like</span>
+                <span class="num">{{ post['is_like'] }}</span>
+            </div>
+        </div> 
+        <div class="link">
+            <a href="/form/post/delete/{{ post['id'] }}">delete</a>
+            <a href="/form/post/edit/{{ post['id'] }}">edit</a>
+        </div>
+        {% if post["is_bid"] == "True" %}
+            <a href="/{{ post['id'] }}/bid">{{ post['pic_name'] }} bid</a>
+        {% endif %}
+        <span>
+        {{ post['username'] }} : {{ post['pic_name'] }}
+        </span>
+        <br>
+        <span>
+            {{ post['comment'] }}
+        </span>
+    </li>
+    {% endfor %}
+</ul>
+{%endblock%}
