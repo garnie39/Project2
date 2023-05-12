@@ -85,6 +85,9 @@ def add_new_post():
 # UPDATE
 @app.route("/likes/add/<id>")
 def add_like(id):
+    if session.get("user_id") is None:
+        return redirect("/login")
+    print(session['user_id'])
     post = showcase.Posts(id=id)
     item = post.get_post()
     current_like = item['user_like']
