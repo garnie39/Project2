@@ -18,27 +18,27 @@ NFT + IG = +A SHOWCASE
 
    - <nav> .html
      / user page
-       - user_credit
+       / user_credit
        / user_post
-         - showcase
-         - bid
+         / showcase
+         / bid
        - user_profile_pic
      / feed
-       - all users posts
+       / all users posts
      / bid
        - all bid posts
      / add credit coins
        - info how to add coin
      / about SHOWCASE
-     - user_bid
+     / user_bid
        - list of successful bid
        - list of ongoingg bid
-   - display .html
-     - user_credit_coin
-     - add post
-     - feed
+   / display .html
+     / user_credit_coin
+     / add post
+     / feed
    / function to display all posts .py
-   - function to display user_credit_coin .py
+   / function to display user_credit_coin .py
    / function to add post .py
      / CREATE TABLE showcase
      / id SERRIAL PRIMARY KEY
@@ -49,11 +49,12 @@ NFT + IG = +A SHOWCASE
      - end time
 
 3. A post .html
-   - like button .html
-   - bid button .html
+   / like button .html
+   / bid button .html
    - comment input
    - function to store all like n comment input .py
-   - function to display likes and comments .py & .html
+   / function to display likes
+     - comments .py & .html
      / CREATE TABLE posts
      / id SERRIAL PRIMARY KEY
      / user_id TEXT
