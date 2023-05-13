@@ -3,9 +3,9 @@
 {%block title%}{{ session['user_username'] }}{%endblock%}
 
 {%block content%}
+<h2 class="header"> {{ session['user_username'] }} POST A+ </h2>
 <ul>
     {% for post in user_posts %}
-    <h2 class="header"> {{ post['username'] }} POST A+ </h2>
     <li>
         {% if post["pic_url"] %}
         <img src="{{ post['pic_url'] }}">

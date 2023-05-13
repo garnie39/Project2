@@ -151,25 +151,20 @@ def delete_form(id):
     if session.get("user_id", ""):
         post_obj = showcase.Posts(id=id)
         post = post_obj.get_post()
-        print(session["user_id"])
-        print(post["user_id"])
-        print(post['user_id'] == session["user_id"])
-        if post['user_id'] == session["user_id"]:
-            return render_template("delete.html", post= post)
+        if (post['user_id'] == str(session["user_id"])) and (post['is_bid'] == False):
+            return render_template("delete.html", post=post)
         else:
-            print(post['user_id'])
             return render_template("error.html", message="You are not authorized to delete this post.")
     else:
-        return redirect("/")
+        return redirect ("/")
 
-@app.route("/post/delete/<id>", methods=["POST"])
-def delete_post(id):
+@app.route("/post/delete", methods=["POST"])
+def delete_post():
     form = request.form
-    post_obj = showcase.Posts(id=id)
-    post = post_obj.get_post()
-    if session.get("user_id") and post['user_id'] == session.get("user_id") and not post['is_bid']:
+    post_obj = showcase.Posts(id=form.get("id"), user_id=form.get("user_id"))
+    if (form.get("user_id") == str(session.get("user_id", ""))):
         post_obj.delete_post()
-        return redirect("/")
+        return redirect ("/")
     else:
         return render_template("error.html", message="You are not authorized to delete this post.")
 
