@@ -133,20 +133,17 @@ def user_page_bid(username):
 # UPDATE
 @app.route("/form/edit/<id>")
 def edit_post_form(id):
-    post_selected = showcase.Posts(id=request.form.get("id"))
     if session.get("user_id", ""):
         post_obj = showcase.Posts(id=id)
-        post = post_obj.get_edit_post()
-        print(post)
-        return render_template("edit_post.html", post = post)
+        return render_template("edit_post.html", post = post_obj.get_edit_post())
     else:
         return render_template("error.html", message="You are not authorized to edit this post.")
     
 @app.route("/post/edit/<id>", methods=["POST"])
-def edit_post():
+def edit_post(id):
     form = request.form
-    post_obj = showcase.Posts(id=form.get("id"))
-    post_obj.edit_post(form.get("pic_name"), forrm.get("bid"))
+    post_obj = showcase.Posts(id=id)
+    post_obj.edit_post(form.get("pic_name"), form.get("bid"))
     return redirect("/")
 
 # DELETE
@@ -155,7 +152,8 @@ def delete_form(id):
     if session.get("user_id", ""):
         post_obj = showcase.Posts(id=id)
         post = post_obj.get_post()
-        if post['user_id'] == session["user_id"] and post['is_bid'] == "False":
+        print(post['user_id'])
+        if post['user_id'] == session["user_id"] and post['is_bid'] == False:
             return render_template("delete.html", post=post)
         else:
             return render_template("error.html", message="You are not authorized to delete this post.")
@@ -163,10 +161,10 @@ def delete_form(id):
         return redirect ("/")
 
 @app.route("/post/delete", methods=["POST"])
-def delete_post():
+def delete_post(id):
     form = request.form
-    post_obj = showcase.Posts(id=form.get("id"), user_id=form.get("user_id"))
-    if form.get("user_id") == session.get("user_id", "") and post['is_bid'] == "False":
+    post_obj = showcase.Posts(id=id)
+    if form.get("user_id") == session.get("user_id", "") and post['is_bid'] == False:
         post_obj.delete_post()
         return redirect ("/")
     else:

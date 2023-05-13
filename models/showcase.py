@@ -36,7 +36,7 @@ class Posts:
         return self.convert_to_dict(post)
 
     def edit_post(self, new_pic_name, new_is_bid):
-        common.sql_write(f"UPDATE showcase SET pic_name=%s, is_bid=%s WHERE id={self.id};", [new_pic_name, new_is_bid])
+        common.sql_write("UPDATE showcase SET pic_name=%s, is_bid=%s WHERE id=%s;", [new_pic_name, new_is_bid, self.id])
 
     def new_post(self):
         common.sql_write("INSERT INTO showcase (user_id, pic_url, pic_name, is_bid, username) VALUES(%s,%s,%s,%s,%s);", [self.user_id, self.pic_url, self.pic_name, self.is_bid, self.username])
