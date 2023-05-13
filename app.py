@@ -44,7 +44,7 @@ def login_action():
 def logout():
     session["user_id"] = None
     session["user_username"] = None
-    session["user_coin"] = None
+    session["user_coins"] = None
     return redirect("/")
 
 # READ
@@ -61,9 +61,8 @@ def feed():
             dic['user_like'] = True
         else:
             dic['user_like'] = False
-        bid = dic['is_bid']
         # print(bid)
-    return render_template("feed.html", feed_item = dict, result = bid)
+    return render_template("feed.html", feed_item = dict)
 
 # CREATE
 @app.route("/form/newpost")
