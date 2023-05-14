@@ -1,18 +1,21 @@
 {% extends "base.html" %}
 {% block title %} Edit Post {% endblock %}
 
-{% block content %} A+ EDIT POST
+{% block content %} 
+<h2>A+ EDIT POST</h2>
 <form class="editpost" action="/post/edit/{{ post['id'] }}" method="post">
+    <label class="change">Change "{{ post['pic_name'] }}" to</label>
+    <br>
     <input hidden name="id" value="{{ post['id'] }}">
-    <label for="pic_name">Caption:</label>
-    <input type="text" name="pic_name" />
+    <label class="name" for="pic_name">Caption:</label>
+    <input class="name" type="text" name="pic_name" />
     <br />
-    <p>Is this picture for bid?</p>
+    <p class="bid_name" >Is this picture for bid?</p>
     <input type="radio" id="bidYes" name="bid" value="True" />
-    <label for="bidYes">Yes</label>
+    <label class="bid" for="bidYes">yes</label>
     <input type="radio" id="bidNo" name="bid" value="False" />
-    <label for="bidNo">No</label>
+    <label class="bid" for="bidNo">no</label>
     <br />
-    <input type="submit" />
+    <input class="sub" type="submit" />
 </form>   
 {% endblock %}

@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500&family=Nerko+One&display=swap');
+
+body {
+    font-family: 'Montserrat Alternates', sans-serif;
+    background-color:rgb(136, 176, 223);
+    font-size: 30px;
+}
+nav {
+    display: flex;
+    text-align: center;
+    text-transform: uppercase;
+    justify-content: center;
+    margin-block: 20px;
+    margin-inline: auto;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 3px solid;
+    border-color:rgb(65, 109, 189);
+}
+
+nav > a {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(48, 100, 195);
+    color:rgb(197, 236, 230);
+    padding: 10px;
+    border-radius: 15px;
+    text-align: center;
+    align-items: center;
+    text-decoration: none;
+    min-height: 50px;
+    max-height: 80px;
+    margin: 10px;
+}
+
+h3 {
+    font-weight: 100px;
+    color: rgb(31, 66, 130);
+}
+
+ul {
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: 320px 320px 320px 320px;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+h2 {
+    font-weight: 100px;
+    color: rgb(63, 100, 169);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: auto;
+}
+li {
+    display: grid;
+    grid-template-areas:
+    "picture picture picture picture picture picture"
+    "icon icon icon icon icon icon"
+    "user con con con con con";
+    height: 350px;
+    width: 300px;
+    background-color: aliceblue;
+    border-radius: 10px;
+}
+img {
+    margin: 10px;
+    grid-area: picture;
+    place-self: center;
+    max-width: 260px;
+    max-height: 200px;
+    border-radius: 10px;
+    place-self: center;
+}
+.icon {
+    grid-area: icon;
+    display: flex;
+    height: 50px;
+    width: 280px;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+    
+}
+.heart-btn-filled {
+    display: grid;
+    grid-template-areas: 
+    "likes totalLike";
+    height: 40px;
+    width: 80px;
+    align-items: center;
+}
+.heart-btn-filled > a > svg {
+    grid-area: likes;
+    height: 25px;
+    width: 25px;
+}
+.heart-btn-unfilled {
+    display: grid;
+    grid-template-areas: 
+    "likes totalLike";
+    height: 40px;
+    width: 80px;
+    align-items: center;
+}
+.heart-btn-unfilled > a > svg {
+    grid-area: likes;
+    height: 25px;
+    width: 25px;
+}
+.totallike {
+    grid-area: totalLike;
+    color: rgb(87, 50, 154);
+    font-size: 15px;
+    width: 70px;
+    text-align: center;
+}
+.link {
+    grid-template-areas: 
+    "icon1 icon2";
+    height: 30px;
+    width: 75px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.link > a{
+    text-decoration: none;
+}
+.link > .edit {
+    grid-area: icon1;
+
+}
+.link > .delete {
+    grid-area: icon2;
+}
+.link > .coin {
+    grid-area: icon2;
+    height: 30px;
+    width: 30px;
+    justify-self: end;
+}
+h6.username {
+    grid-area: user;
+    font-size: 20px;
+    text-transform: uppercase;
+    text-align: center;
+    height: 30px;
+    max-width: 80px;
+    margin: 0px;
+}
+p.content {
+    grid-area: con;
+    font-size: 20px;
+    height:30px;
+    margin: 0px;
+    display: flex;
+    justify-content: flex-start;
+}
+div.page {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    gap: 50px;
+}
+div.page > a {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    height: 60px;
+    width: 300px;
+    border-radius: 20px;
+    background-color: rgb(85, 74, 186);
+    text-align: center;
+    align-items: center;
+    color: rgb(197, 236, 230);
+}
+div.page > a:active {
+    background-color:  rgb(141, 135, 196);
+}

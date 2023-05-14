@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../static/a.css" />
+    <link rel="stylesheet" href="/static/profile.css" />
     {%block head%}{%endblock%}
     <title>{%block title%}{%endblock%}</title>
   </head>
@@ -31,8 +31,10 @@
         </nav>
     </header>
     <section>
+      <div class="page">
         <a href="/{{ session['user_username'] }}/">POST</a>
         <a href="/{{ session['user_username'] }}/bid">BID</a>
+      </div>
         {%block content%} {%endblock%}
     </section>
   </body>

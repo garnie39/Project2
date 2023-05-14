@@ -2,12 +2,15 @@
 {% block title %} Delete Post {% endblock %}
 
 {% block content %}
-<h2 class="header">A+ DELETE POST</h2>
-<form>
-    <p>Are you sure you want to delete?</p>
+<h2>A+ DELETE POST</h2>
+<img class="del_pic" src="{{ post['pic_url']}}"/>
+<br>
+<form class="delete">
+    <label class="delete_me" for="delete" >Would you like to delete?</label>
+    <br>
     <input hidden name="id" value="{{ post['id'] }}">
     <input hidden name="user_id" value="{{ post['user_id'] }}">
-    <input type="submit" value="Yes" formmethod="POST" formaction="/post/delete">
-    <input type="submit" value="No" formaction="/">
+    <input class="input" type="submit" value="Yes" formmethod="POST" formaction="/post/delete">
+    <input class="input2" type="submit" value="No" formaction="/">
 </form>
 {% endblock %}

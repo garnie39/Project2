@@ -46,7 +46,7 @@ ul {
     grid-template-columns: 320px 320px 320px 320px;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 30px;
 }
 
 h2 {
@@ -64,27 +64,26 @@ li {
     "icon icon icon icon icon icon"
     "user con con con con con";
     height: 350px;
-    width: 280px;
+    width: 300px;
     background-color: aliceblue;
     border-radius: 10px;
-    margin: 10px;
-    padding: 10px;
 }
 img {
+    margin: 10px;
     grid-area: picture;
     place-self: center;
-    max-width: 280px;
+    max-width: 260px;
     max-height: 200px;
-    margin: 10px;
     border-radius: 10px;
+    place-self: center;
 }
 .icon {
     grid-area: icon;
     display: flex;
     height: 50px;
-    width: 270px;
+    width: 280px;
     justify-content: space-between;
-    padding: 5px;
+    padding: 10px;
     align-items: center;
     
 }
@@ -123,7 +122,7 @@ img {
 }
 .link {
     grid-template-areas: 
-    "edit delete";
+    "icon1 icon2";
     height: 30px;
     width: 75px;
     display: flex;
@@ -133,14 +132,17 @@ img {
     text-decoration: none;
 }
 .link > .edit {
-    grid-area: edit;
-    text-decoration: none;
+    grid-area: icon1;
 
 }
 .link > .delete {
-    grid-area: delete;
-    text-decoration: none;
-
+    grid-area: icon2;
+}
+.link > .coin {
+    grid-area: icon2;
+    height: 30px;
+    width: 30px;
+    justify-self: end;
 }
 h6.username {
     grid-area: user;
@@ -159,7 +161,6 @@ p.content {
     display: flex;
     justify-content: flex-start;
 }
-
 form.newpost {
    border-radius: 15px;
    background-color: aliceblue;
@@ -224,6 +225,117 @@ form.newpost > .sub {
     width: 200px;
     margin-left: 300px;
     margin-top: 30px;
+}
+form.editpost {
+    border-radius: 15px;
+    background-color: aliceblue;
+    width: 800px;
+    height: 350px;
+    margin: auto;
+    padding: auto;
+    color:rgb(31, 66, 130);
+}
+form.editpost > input {
+    width: 550px;
+    font-family: 'Montserrat Alternates', sans-serif;
+    color:rgb(31, 66, 130);
+}
+form.editpost > .change {
+    padding-top: 30px;
+    margin-left: 30px;
+    font-weight: 100px;
+    font-size:35px;
+    text-transform: uppercase;
+    align-items: center;
+}
+form.editpost > .name {
+    margin-top: 20px;
+    margin-left: 30px;
+    font-weight: 100px;
+    font-size: 30px;
+    text-transform: uppercase;
+    align-items: center;
+}
+form.editpost > .bid_name {
+    margin-left: 200px;
+    font-size: 30px;
+    text-transform: uppercase;
+    display: grid;
+    grid-template-areas: 
+        "op op2 op3 op4"
+        "sub sub";
+}
+input#bidYes {
+    margin-left: 300px;
+    grid-area: op;
+    height: 30px;
+    width: 30px;
+}
+input#bidNo{
+    grid-area: op3;
+    height: 30px;
+    width: 30px;
+}
+.bid {
+    text-transform: uppercase;
+}
+form.editpost > .sub {
+    font-family: 'Montserrat Alternates', sans-serif;
+    border: none;
+    background-color: rgb(65, 85, 156);
+    font-size: 30px;
+    text-transform: uppercase;
+    color: rgb(209, 255, 255);
+    border-radius: 10px;
+    width: 200px;
+    margin-left: 300px;
+    margin-top: 30px;
+}
+form.delete {
+    border-radius: 15px;
+    background-color: aliceblue;
+    width: 600px;
+    height: 150px;
+    margin: auto;
+    padding: auto;
+    color:rgb(31, 66, 130);
+}
+.del_pic {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    padding: auto;
+}
+form.delete > label.delete_me {
+    margin-top: 200px;
+    margin-left: 60px;
+    font-weight: 100px;
+    font-size: 30px;
+    text-transform: uppercase;
+}
+form.delete > .input {
+    font-family: 'Montserrat Alternates', sans-serif;
+    border: none;
+    background-color: rgb(65, 85, 156);
+    font-size: 30px;
+    text-transform: uppercase;
+    color: rgb(209, 255, 255);
+    border-radius: 10px;
+    width: 200px;
+    margin-left: 190px;
+    margin-top: 10px;
+}
+form.delete > .input2 {
+    font-family: 'Montserrat Alternates', sans-serif;
+    border: none;
+    background-color: rgb(65, 85, 156);
+    font-size: 30px;
+    text-transform: uppercase;
+    color: rgb(209, 255, 255);
+    border-radius: 10px;
+    width: 200px;
+    margin-left: 190px;
+    margin-top: 10px;
 }
 form.signup {
     border-radius: 15px;
@@ -349,4 +461,12 @@ form.login > .sub {
     justify-content: center;
     font-weight: 100px;
     font-size: 30px;
+}
+h4 {
+    font-weight: 100px;
+    color: rgb(120, 53, 230);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: auto;
 }
