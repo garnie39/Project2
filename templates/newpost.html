@@ -1,21 +1,20 @@
 {% extends 'base.html' %}
-{% block head %} <script src="../static/newpost.js" defer></script> {% endblock %}
 {% block title %} New Post {% endblock %}
 
-{% block content %} A+ NEW POST
+{% block content %} <h2>A+ NEW POST</h2>
 <form class="newpost" action="/newpost" method="post">
-  <label for="pic_url">Picture:</label>
-  <input type="text" name="pic_url" />
+  <label class="pic" for="pic_url">Picture:</label>
+  <input class="pic" type="text" name="pic_url" />
   <br />
-  <label for="pic_name">Caption:</label>
-  <input type="text" name="pic_name" />
+  <label class="name" for="pic_name">Caption:</label>
+  <input class="name" type="text" name="pic_name" />
   <br />
-  <p>Is this picture for bid?</p>
+  <p class="bid_name" >Is this picture for bid?</p>
   <input type="radio" id="bidYes" name="bid" value="True" />
-  <label for="bidYes">Yes</label>
+  <label class="bid" for="bidYes">yes</label>
   <input type="radio" id="bidNo" name="bid" value="False" />
-  <label for="bidNo">No</label>
+  <label class="bid" for="bidNo">no</label>
   <br />
-  <input type="submit" />
+  <input class="sub" type="submit" />
 </form>
 {%endblock%}

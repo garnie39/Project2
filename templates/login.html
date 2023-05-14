@@ -1,17 +1,18 @@
 {% extends "base.html" %}
 {%block title%}login{%endblock%}
-{%block content%} A+ SHOWCASE Login
+{%block content%} 
+<h2>A+ SHOWCASE LOGIN</h2>
 <form class="login" action="/login" method="post">
-  <label for="username">Username:</label>
-  <input type="usename" name="username" />
+  <label class="user" for="username">Username:</label>
+  <input class="user" type="usename" name="username" />
   <br />
-  <label for="email">Email Address:</label>
-  <input type="email" name="email" />
+  <label class="email" for="email">Email:</label>
+  <input class="email" type="email" name="email" />
   <br />
-  <label for="password">Password:</label>
-  <input type="password" name="password" />
+  <label class="password" for="password">Password:</label>
+  <input class="user" type="password" name="password" />
   <br />
-  <input type="submit" />
+  <input class="sub" type="submit" />
 </form>
-<p>{{ message }}</p>
+<p class="message">{{ message }}</p>
 {%endblock%}
