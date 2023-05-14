@@ -29,7 +29,7 @@ I thought it would be fun to try create the space where they can feel comfortabl
 ### Each of the post will show username who posted, like, however if image is for bid you won't be able to see edit/delete icon:
 ![alt_text](https://github.com/garnie39/Project2/blob/master/images/Screen%20Shot%202023-05-14%20at%205.55.40%20pm.png?raw=true)
 
-### Everytime when user click on like the number will keep counting total numnber of likes however user click twice, it will reverse back:
+### Everytime when user click on like the number will keep counting total number of likes however user click twice, it will reverse back:
 ![alt_text](https://github.com/garnie39/Project2/blob/master/images/Screen%20Shot%202023-05-14%20at%205.55.25%20pm.png?raw=true)
 
 ## Languages
